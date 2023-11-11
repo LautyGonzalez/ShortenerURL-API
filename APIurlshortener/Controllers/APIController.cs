@@ -7,5 +7,12 @@ namespace APIurlshortener.Controllers
     [ApiController]
     public class APIController : ControllerBase
     {
+        [HttpPost]
+        public IActionResult PostUrl()
+        {
+
+            return Ok();
+        }
+
     }
 }

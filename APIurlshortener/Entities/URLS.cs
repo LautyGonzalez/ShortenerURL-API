@@ -1,12 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace APIurlshortener.Controllers
+namespace APIurlshortener.Entities
 {
-    public class LargueURL
+    public class Urls
     {
+        [Key]
         public int ID { get; set; }
-        
+
         [Required]
-        public string Url { get; set;}
+        public string? UrlLarge { get; set; }
+
+        public string? UrlShort { get; set; }
     }
 }
