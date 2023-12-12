@@ -2,6 +2,7 @@
 using APIurlshortener.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIurlshortener.Migrations
 {
     [DbContext(typeof(URLShortenerContext))]
-    partial class URLShortenerContextModelSnapshot : ModelSnapshot
+    [Migration("20231209051431_decimaMigracion")]
+    partial class decimaMigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -68,6 +71,9 @@ namespace APIurlshortener.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UserID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("counter")
                         .HasColumnType("INTEGER");
 
@@ -75,7 +81,7 @@ namespace APIurlshortener.Migrations
 
                     b.HasIndex("ID_category");
 
-                    b.HasIndex("ID_user");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Url");
                 });
@@ -94,9 +100,6 @@ namespace APIurlshortener.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("limite")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("ID");
 
                     b.ToTable("User");
@@ -112,7 +115,7 @@ namespace APIurlshortener.Migrations
 
                     b.HasOne("APIurlshortener.Entities.User", "User")
                         .WithMany("Url")
-                        .HasForeignKey("ID_user")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

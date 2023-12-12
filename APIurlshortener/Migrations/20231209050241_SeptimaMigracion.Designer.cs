@@ -2,6 +2,7 @@
 using APIurlshortener.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIurlshortener.Migrations
 {
     [DbContext(typeof(URLShortenerContext))]
-    partial class URLShortenerContextModelSnapshot : ModelSnapshot
+    [Migration("20231209050241_SeptimaMigracion")]
+    partial class SeptimaMigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -93,9 +96,6 @@ namespace APIurlshortener.Migrations
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("limite")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
