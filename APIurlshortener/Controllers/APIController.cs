@@ -39,15 +39,17 @@ namespace APIurlshortener.Controllers
 
             var users = _context.User.FirstOrDefault(u => u.ID == userId);
 
-            users.limite--;
-
-            _context.Update(users);
-            _context.SaveChanges();
-
-            if(users.limite == 0)
+            if (users.limite == 0)
             {
                 return BadRequest("Limite alcanzado");
             }
+
+            users.limite--;
+            
+            _context.Update(users);
+            _context.SaveChanges();
+
+            
             return Ok(ShortUrl);
         }
 
